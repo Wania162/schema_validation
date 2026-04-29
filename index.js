@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use("/api/users", userRoutes);
 
-mongoose.connect("mongodb://localhost:27017/user")
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log("MongoDB connected!");
     app.listen(3000, () => console.log("Server running on port 3000"));

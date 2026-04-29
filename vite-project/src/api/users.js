@@ -1,4 +1,4 @@
-const BASE = "http://localhost:3000/api/users";
+const BASE = "https://schemavalidation-production.up.railway.app/api/users";
 
 export const createUser = (data) =>
   fetch(`${BASE}/signup`, {
