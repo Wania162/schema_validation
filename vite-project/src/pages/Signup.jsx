@@ -47,8 +47,8 @@ export default function Signup({ onSuccess }) {
       </div>
       <form onSubmit={handle} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-          <Input label="Full Name" placeholder="Sara Khan" value={form.name} onChange={set("name")} error={errors.name} />
-          <Input label="Age" type="number" placeholder="22" value={form.age} onChange={set("age")} error={errors.age} />
+          <Input label="Full Name" placeholder="Enter your full name" value={form.name} onChange={set("name")} error={errors.name} />
+          <Input label="Age" type="number" placeholder="Enter your age" value={form.age} onChange={set("age")} error={errors.age} />
         </div>
         <Input label="Email Address" type="email" placeholder="Enter your Email" value={form.email} onChange={set("email")} error={errors.email} />
         <Input label="Password" type="password" placeholder="Minimum 6 characters" value={form.password} onChange={set("password")} error={errors.password} />
