@@ -48,7 +48,7 @@ function DeleteModal({ name, onClose, onConfirm }) {
             flex: 1, padding: 10, borderRadius: 8, border: "none",
             background: "linear-gradient(135deg, #EF4444, #DC2626)",
             color: "#fff", fontSize: 14, fontWeight: 600, cursor: "pointer",
-          }}>Haan, Delete karo</button>
+          }}>Yes, Delete</button>
         </div>
       </div>
     </div>
@@ -134,7 +134,7 @@ export default function Users({ onSuccess }) {
       setDeleteModal(null);
       load();
     } catch {
-      onSuccess("Delete fail hua", "error");
+      onSuccess("Failed to delete user", "error");
     }
   };
 

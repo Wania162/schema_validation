@@ -10,8 +10,8 @@ export default function Login({ onSuccess }) {
   const handle = async (e) => {
     e.preventDefault();
     const errs = {};
-    if (!form.email) errs.email = "Email daalo";
-    if (!form.password) errs.password = "Password daalo";
+    if (!form.email) errs.email = "Enter your Email";
+    if (!form.password) errs.password = "Enter your Password";
     if (Object.keys(errs).length) return setErrors(errs);
     setLoading(true);
     try {
@@ -21,10 +21,10 @@ export default function Login({ onSuccess }) {
         onSuccess(`Welcome back, ${user.name.split(" ")[0]}!`, "success");
         setForm({ email: "", password: "" });
       } else {
-        onSuccess("Email ya password galat hai", "error");
+        onSuccess("Invalid email or password", "error");
       }
     } catch {
-      onSuccess("Server se connect nahi ho saka", "error");
+      onSuccess("Failed to connect to server", "error");
     } finally {
       setLoading(false);
     }
@@ -39,11 +39,11 @@ export default function Login({ onSuccess }) {
     <div>
       <div style={{ marginBottom: 28 }}>
         <h2 style={{ fontSize: 22, fontWeight: 700, color: "#111827", margin: 0 }}>Welcome back</h2>
-        <p style={{ fontSize: 14, color: "#6B7280", marginTop: 4 }}>Apne account mein login karo</p>
+        <p style={{ fontSize: 14, color: "#6B7280", marginTop: 4 }}>Sign in to your account</p>
       </div>
       <form onSubmit={handle} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        <Input label="Email Address" type="email" placeholder="sara@gmail.com" value={form.email} onChange={set("email")} error={errors.email} />
-        <Input label="Password" type="password" placeholder="Tumhara password" value={form.password} onChange={set("password")} error={errors.password} />
+        <Input label="Email Address" type="email" placeholder="Enter your Email" value={form.email} onChange={set("email")} error={errors.email} />
+        <Input label="Password" type="password" placeholder="Enter your Password" value={form.password} onChange={set("password")} error={errors.password} />
         <button type="submit" disabled={loading} style={{
           marginTop: 8, padding: 12, borderRadius: 10, border: "none",
           background: loading ? "#A5B4FC" : "linear-gradient(135deg, #6366F1, #8B5CF6)",

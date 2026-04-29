@@ -9,10 +9,10 @@ export default function Signup({ onSuccess }) {
 
   const validate = () => {
     const e = {};
-    if (!form.name || form.name.length < 3) e.name = "Name kam az kam 3 characters ka hona chahiye";
-    if (!form.email || !/^\S+@\S+\.\S+$/.test(form.email)) e.email = "Valid email daalo";
-    if (!form.password || form.password.length < 6) e.password = "Password kam az kam 6 characters";
-    if (!form.age || form.age < 18 || form.age > 100) e.age = "Age 18 se 100 ke beech honi chahiye";
+    if (!form.name || form.name.length < 3) e.name = "Full name should be at least 3 characters";
+    if (!form.email || !/^\S+@\S+\.\S+$/.test(form.email)) e.email = "Valid email address is required";
+    if (!form.password || form.password.length < 6) e.password = "Password should be at least 6 characters";
+    if (!form.age || form.age < 18 || form.age > 100) e.age = "Age should be between 18 and 50";
     return e;
   };
 
@@ -24,7 +24,7 @@ export default function Signup({ onSuccess }) {
     try {
       const data = await createUser({ ...form, age: Number(form.age) });
       if (data.error) throw new Error(data.error);
-      onSuccess("Account ban gaya! Welcome " + form.name.split(" ")[0], "success");
+      onSuccess("Account created successfully! Welcome " + form.name.split(" ")[0], "success");
       setForm({ name: "", email: "", password: "", age: "" });
       setErrors({});
     } catch (err) {
@@ -43,14 +43,14 @@ export default function Signup({ onSuccess }) {
     <div>
       <div style={{ marginBottom: 28 }}>
         <h2 style={{ fontSize: 22, fontWeight: 700, color: "#111827", margin: 0 }}>Create account</h2>
-        <p style={{ fontSize: 14, color: "#6B7280", marginTop: 4 }}>Apni details fill karo aur signup karo</p>
+        <p style={{ fontSize: 14, color: "#6B7280", marginTop: 4 }}>Fill in your details to create an account</p>
       </div>
       <form onSubmit={handle} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
           <Input label="Full Name" placeholder="Sara Khan" value={form.name} onChange={set("name")} error={errors.name} />
           <Input label="Age" type="number" placeholder="22" value={form.age} onChange={set("age")} error={errors.age} />
         </div>
-        <Input label="Email Address" type="email" placeholder="sara@gmail.com" value={form.email} onChange={set("email")} error={errors.email} />
+        <Input label="Email Address" type="email" placeholder="Enter your Email" value={form.email} onChange={set("email")} error={errors.email} />
         <Input label="Password" type="password" placeholder="Minimum 6 characters" value={form.password} onChange={set("password")} error={errors.password} />
         <button type="submit" disabled={loading} style={{
           marginTop: 8, padding: 12, borderRadius: 10, border: "none",
